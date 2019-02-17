@@ -4,26 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>90s Cartoon Trivia Game</title>
+    <title>Harry Potter Trivia Game</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Henny+Penny" rel="stylesheet"/>
 
 </head>
 <body>
+    <!-- Game Header -->
 <div class="container game-body">
     <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
-                <h1>90s Cartoon Trivia Game</h1>
+                <h1>Harry Potter Trivia Game</h1>
             </div>
             <div class="col-md-1"></div>
     </div>
 
+    <!-- Game Start Button -->
+
+    <div class="container">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4 button-div">
+                    <button type="button" class="btn btn-success" id="start-button">Start Game</button>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+
+    <!-- Questions Template -->
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8 game-question">
-            <h3 class="time-remaining">Time Remaining</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore rerum vero numquam, ex, odio optio, repudiandae blanditiis maxime iste totam aperiam. Fugiat doloremque laudantium quo placeat delectus, officiis iure veniam.</p>
+            <h3 class="time-remaining"></h3>
+            <span id="currentQuestion"></span>
         </div>
         <div class="col-md-2"></div>
     </div>
@@ -31,15 +46,39 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4 answer-boxes">
-            <p>Answer A</p>
-            <p>Answer B</p>
-            <p>Answer C</p>
-            <p>Answer D</p>
+            <div class="answer-boxes-background">
+                 <span class="shiny"></span>
+            </div>
+
+            <div class="answer-boxes-background">
+                 <span class="shiny"></span>
+            </div>
+
+            <div class="answer-boxes-background">
+                 <span class="shiny"></span>
+            </div>
+
+            <div class="answer-boxes-background">
+                <span class="shiny"></span>
+            </div>
         </div>
         <div class="col-md-4"></div>
     </div>
+
+    <!-- Answers Page -->
+        <div id="answer-message"></div>
+        <div id="correctedAnswer"></div>
+        <div id="gif"></div>
+
+    <!-- Game Results -->
+    <div id="resultsMessage"></div>
+    <div id="correctAnswers"></div>
+    <div id="incorrectAnswers"></div>
+    <div id="unanswered"></div>
+    <div id="startOverBtn"></div>
 </div>
-    
-    
+
+<script src="https://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
 </html>
