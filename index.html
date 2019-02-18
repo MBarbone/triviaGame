@@ -27,46 +27,32 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4 button-div">
-                    <button type="button" class="btn btn-success" id="start-button">Start Game</button>
+                        <img src="assets/images/gafas-harry-potter-png-4.png"  id="startScreenImage">
+                        <button type="button" class="btn btn-success" id="start-button">Start Game</button>
+                     </div>
                 </div>
-                <div class="col-md-4"></div>
+            
             </div>
-        </div>
+    
 
     <!-- Questions Template -->
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8 game-question">
-            <h3 class="time-remaining"></h3>
-            <span id="currentQuestion"></span>
+            <span id="timeRemaining"></span>
+            <span class="currentQuestion"></span>
         </div>
         <div class="col-md-2"></div>
     </div>
 
     <div class="row">
         <div class="col-md-4"></div>
-        <div class="col-md-4 answer-boxes">
-            <div class="answer-boxes-background">
-                 <span class="shiny"></span>
-            </div>
-
-            <div class="answer-boxes-background">
-                 <span class="shiny"></span>
-            </div>
-
-            <div class="answer-boxes-background">
-                 <span class="shiny"></span>
-            </div>
-
-            <div class="answer-boxes-background">
-                <span class="shiny"></span>
-            </div>
-        </div>
+        <div class="col-md-4 answerList"></div>
         <div class="col-md-4"></div>
     </div>
 
     <!-- Answers Page -->
-        <div id="answer-message"></div>
+        <div id="answerMessage"></div>
         <div id="correctedAnswer"></div>
         <div id="gif"></div>
 

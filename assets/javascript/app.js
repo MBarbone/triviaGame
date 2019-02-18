@@ -38,7 +38,7 @@ var triviaQuestions= [{
 	answer: 1
 },{
     question: "What is a thestral?",
-	answerList: ["A type of Elf", "A Ghost", "Giant Blue Pixie", "Skeleton Wing-ed Horse"],
+	answerList: ["A type of Elf", "A Ghost", "Giant Blue Pixie", "Skeletal Wing-ed Horse"],
 	answer: 3
 },{
     question: "Who is the Half-Blood Prince?",
@@ -66,7 +66,7 @@ var userSelect;
 // game messages
 var alerts = {
 	correct: "Yes, that's correct!",
-	incorrect: "Oh no! That's incorrect",
+	incorrect: "Oh no! That's incorrect.",
 	endTime: "You're Out of Time!",
 	quizEnd: "Alright! Let's see how well you know Harry Potter."
 };
@@ -85,6 +85,7 @@ $('#replay-button').on('click', function(){
 });
 
 function startGame(){
+	$("#startScreenImage").hide();
 	$('#resultsMessage').empty();
 	$('#correctAnswers').empty();
 	$('#incorrectAnswers').empty();
@@ -97,8 +98,101 @@ function startGame(){
 };
 
 
+function newQuestion(){
+    $("#answerMessage").empty();
+    $("#correctedAnswer").empty();
+    $("#gif").empty();
+    answered= true;
+
+
+    $("#currentQuestion").text("Question #"+(currentQuestion+1)+"/"+triviaQuestions.length);
+    $(".currentQuestion").html("<h2>" + triviaQuestions[currentQuestion].question + "</h2>");
+    
+    for(var i=0; i<4; i++){
+        var choices = $("<div>");
+		choices.text(triviaQuestions[currentQuestion].answerList[i]);
+		choices.attr({"data-index": i });
+		choices.addClass("thisChoice");
+        $(".answerList").append(choices);
+        choices.addClass("shiny")
+        $(".answerList").append(choices);
+    };
+
+    countdown();
+	//clicking an answer will pause the time and setup answerPage
+	$(".thisChoice").on("click",function(){
+		userSelect = $(this).data("index");
+		clearInterval(time);
+		answerPage();
+	});
+};
+
+function countdown(){
+	seconds = 15;
+	$("#timeRemaining").html("<h3>Time Remaining: " + seconds + "</h3>");
+	answered = true;
+	//sets timer to go down
+	time = setInterval(showCountdown, 1000);
+};
+
+function showCountdown(){
+	seconds--;
+	$("#timeRemaining").html("<h3>Time Remaining: " + seconds + "</h3>");
+	if(seconds < 1){
+		clearInterval(time);
+		answered = false;
+		answerPage();
+	};
+};
+
+function answerPage(){
+	$("#currentQuestion").empty();
+	$(".thisChoice").empty(); //Clears question page
+	$(".question").empty();
+
+	var rightAnswerText = triviaQuestions[currentQuestion].answerList[triviaQuestions[currentQuestion].answer];
+	var rightAnswerIndex = triviaQuestions[currentQuestion].answer;
 
 
 
+	//checks to see correct, incorrect, or unanswered
+	if((userSelect == rightAnswerIndex) && (answered == true)){
+		correctAnswer++;
+		$("#answerMessage").html(alerts.correct);
+		$('#gif').html('<img src = "assets/images/correct.gif" width = "300px">');
+	} else if((userSelect != rightAnswerIndex) && (answered == true)){
+		incorrectAnswer++;
+		$("#answerMessage").html(alerts.incorrect);
+		$('#correctedAnswer').html("The correct answer was: " + rightAnswerText);
+		$('#gif').html('<img src = "assets/images/incorrect.gif" width = "300px">');
+	} else{
+		unanswered++;
+		$("#answerMessage").html(alerts.endTime);
+		$("#correctedAnswer").html("The correct answer was: " + rightAnswerText);
+		$('#gif').html('<img src = "assets/images/incorrect.gif" width = "300px">');
+		answered = true;
+	};
+	
+	if(currentQuestion == (triviaQuestions.length-1)){
+		setTimeout(scoreboard, 3000)
+	} else{
+		currentQuestion++;
+		setTimeout(newQuestion, 3000);
+	};
+};
 
+function scoreboard(){
+	$("#timeRemaining").empty();
+	$("#answerMessage").empty();
+	$("#correctedAnswer").empty();
+	$("#gif").empty();
+	$(".currentQuestion").empty();
 
+	$("#resultsMessage").html(alerts.quizEnd);
+	$("#correctAnswers").html("Correct Answers: " + correctAnswer);
+	$("#incorrectAnswers").html("Incorrect Answers: " + incorrectAnswer);
+	$("#unanswered").html("Unanswered: " + unanswered);
+	$("#startOverBtn").addClass("reset");
+	$("#startOverBtn").show();
+	$("#startOverBtn").html("Try Again?");
+};
