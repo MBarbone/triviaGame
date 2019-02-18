@@ -79,7 +79,7 @@ $("#start-button").on("click", function(){
 });
 
 
-$('#replay-button').on('click', function(){
+$("#replayBtn").on("click", function(){
 	$(this).hide();
 	startGame();
 });
@@ -192,7 +192,7 @@ function scoreboard(){
 	$("#correctAnswers").html("Correct Answers: " + correctAnswer);
 	$("#incorrectAnswers").html("Incorrect Answers: " + incorrectAnswer);
 	$("#unanswered").html("Unanswered: " + unanswered);
-	$("#startOverBtn").addClass("reset");
-	$("#startOverBtn").show();
-	$("#startOverBtn").html("Try Again?");
+	$("#replayBtn").addClass("btn btn-success");
+	$("#replayBtn").show();
+	$("#replayBtn").html("Try Again?");
 };

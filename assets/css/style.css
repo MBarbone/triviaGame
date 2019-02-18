@@ -14,7 +14,7 @@ h1 {
     text-align: center;
 }
 
-.btn-success {
+#start-button {
     width: 250px;
     text-align: center;
     margin-bottom: 20px;
@@ -45,9 +45,8 @@ h3 {
     -webkit-text-fill-color: transparent;
     text-fill-color: transparent;
     transition: color 200ms linear;
-    font-size: 14pt;
+    font: 16pt bold;
     background-color: black;
-    border-radius: 25px;
     padding: 0 10px;
     margin: 25px 0px 30px 0px;
     text-align: center;
@@ -64,14 +63,14 @@ h3 {
     transform: translateY(4px);
 }
 
-#gif {
+
+#resultsMessage, #correctAnswers, #incorrectAnswers, #unanswered, #gif, #correctedAnswer, #answerMessage {
     text-align: center;
+    margin-bottom: 5px;
+}
+    
 }
 
-#correctedAnswer {
-    text-align: center;
-}
-
-#answerMessage {
+#replayBtn {
     text-align: center;
 }
